@@ -7,7 +7,19 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// add express-session
+const session = require('express-session');
+
 var app = express();
+
+// add express-session setup
+const ses_opt = {
+  secret:'** secret key **',
+  resave:false,
+  saveUninitialized:false,
+  cookie:{ maxAge: 60 * 60 * 24 }
+}
+app.use(session(ses_opt));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
